@@ -4,7 +4,6 @@ public enum Weapon {
     SWORD,
     CLAYMORE,
     BOW,
-    SPEAR,
-    BOOK,
-    CATALIZATOR
+    POLEARM,
+    CATALYST
 }
