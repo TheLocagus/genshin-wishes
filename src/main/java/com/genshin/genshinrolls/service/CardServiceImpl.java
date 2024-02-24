@@ -1,11 +1,13 @@
 package com.genshin.genshinrolls.service;
 
+import com.genshin.genshinrolls.RollImpl;
 import com.genshin.genshinrolls.entity.CardEntity;
+import com.genshin.genshinrolls.enums.Rarity;
 import com.genshin.genshinrolls.repository.CardRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CardServiceImpl implements CardService{
@@ -37,13 +39,24 @@ public class CardServiceImpl implements CardService{
 
         ArrayList<CardEntity> allCards = (ArrayList<CardEntity>) this.cardRepository.findAll();
 
-        allCards.sort(Comparator.comparingDouble(CardEntity::getChance));
+        ArrayList<CardEntity> cardsWithRarityThree = allCards.stream().filter((cardEntity -> cardEntity.getRarity() == Rarity.THREE)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<CardEntity> cardsWithRarityFour = allCards.stream().filter((cardEntity -> cardEntity.getRarity() == Rarity.FOUR)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<CardEntity> cardsWithRarityFive = allCards.stream().filter((cardEntity -> cardEntity.getRarity() == Rarity.FIVE)).collect(Collectors.toCollection(ArrayList::new));
 
-        for(CardEntity card : allCards){
-            System.out.println(card.toString());
+        HashMap<Rarity, Double> rarityMap = new HashMap<>();
+        rarityMap.put(Rarity.THREE, cardsWithRarityThree.get(0).getChance());
+        rarityMap.put(Rarity.FOUR, cardsWithRarityFour.get(0).getChance());
+        rarityMap.put(Rarity.FIVE, cardsWithRarityFive.get(0).getChance());
+
+        Set<Map.Entry<Rarity, Double>> raritySet = rarityMap.entrySet();
+        Set<Map.Entry<Rarity, Double>> raritySetSorted = raritySet.stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        for (int i = 0; i < 10; i++) {
+            result[i] = new RollImpl(raritySetSorted, cardsWithRarityThree, cardsWithRarityFour, cardsWithRarityFive).roll();
         }
 
-        return new CardEntity[0];
+        return result;
     }
 
     @Override

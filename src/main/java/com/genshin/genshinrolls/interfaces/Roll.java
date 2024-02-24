@@ -1,6 +1,8 @@
 package com.genshin.genshinrolls.interfaces;
 
+import com.genshin.genshinrolls.entity.CardEntity;
+
 public interface Roll {
-    public Card roll();
-    public Card[] tenRoll();
+    public CardEntity roll();
+    public CardEntity[] tenRoll();
 }
