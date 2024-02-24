@@ -1,5 +1,6 @@
 package com.genshin.genshinrolls.service;
 
+import com.genshin.genshinrolls.RollImpl;
 import com.genshin.genshinrolls.entity.CardEntity;
 import com.genshin.genshinrolls.enums.Rarity;
 import com.genshin.genshinrolls.repository.CardRepository;
@@ -52,34 +53,7 @@ public class CardServiceImpl implements CardService{
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
         for (int i = 0; i < 10; i++) {
-            double rand = new Random().nextDouble() * 100;
-            int acc = 0;
-
-            for (Map.Entry<Rarity, Double> rarity : raritySetSorted) {
-                acc += rarity.getValue();
-
-                if (rand < acc) {
-
-                    if (rarity.getKey() == Rarity.THREE) {
-                        Random random = new Random();
-                        final int arrLength = cardsWithRarityThree.size();
-                        result[i] = cardsWithRarityThree.get((int) (random.nextDouble() * arrLength));
-                        break;
-                    }
-                    if (rarity.getKey() == Rarity.FOUR) {
-                        Random random = new Random();
-                        final int arrLength = cardsWithRarityFour.size();
-                        result[i] = cardsWithRarityFour.get((int) (random.nextDouble() * arrLength));
-                        break;
-                    }
-                    if (rarity.getKey() == Rarity.FIVE) {
-                        Random random = new Random();
-                        final int arrLength = cardsWithRarityFive.size();
-                        result[i] = cardsWithRarityFive.get((int) (random.nextDouble() * arrLength));
-                    }
-                }
-            }
-
+            result[i] = new RollImpl(raritySetSorted, cardsWithRarityThree, cardsWithRarityFour, cardsWithRarityFive).roll();
         }
 
         return result;
