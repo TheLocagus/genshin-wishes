@@ -1,6 +1,6 @@
-package com.genshin.genshinrolls.controllers;
+package com.genshin.genshinrolls.controllers.StandardGacha;
 
-import com.genshin.genshinrolls.entity.CardEntity;
+import com.genshin.genshinrolls.entity.Card.CardEntity;
 import com.genshin.genshinrolls.service.CardServiceImpl;
 import org.springframework.web.bind.annotation.*;
 

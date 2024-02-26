@@ -1,6 +1,6 @@
 package com.genshin.genshinrolls.service;
 
-import com.genshin.genshinrolls.entity.CardEntity;
+import com.genshin.genshinrolls.entity.Card.CardEntity;
 import java.util.ArrayList;
 
 public interface CardService {
