@@ -6,5 +6,5 @@ import jakarta.persistence.Entity;
 @Entity
 public class EverbloomVioletEntity extends CardEntity {
 
-    public EverbloomVioletEntity(){}
+    public EverbloomVioletEntity(){};
 }

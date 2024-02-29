@@ -1,16 +1,16 @@
-package com.genshin.genshinrolls.service;
+package com.genshin.genshinrolls.service.CardService;
 
 import com.genshin.genshinrolls.RollImpl;
 import com.genshin.genshinrolls.entity.Card.CardEntity;
-import com.genshin.genshinrolls.enums.Rarity;
 import com.genshin.genshinrolls.interfaces.Roll;
 import com.genshin.genshinrolls.repository.CardRepository;
+import com.genshin.genshinrolls.service.CardService.CardService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class CardServiceImpl implements CardService{
+public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
 
@@ -34,8 +34,8 @@ public class CardServiceImpl implements CardService{
     }
 
     @Override
-    public CardEntity[] getTen() {
-        Roll rollsUtils = new RollImpl();
+    public ArrayList<CardEntity> getTen() {
+        Roll<CardEntity> rollsUtils = new RollImpl<>();
         return rollsUtils.getTen((ArrayList<CardEntity>) this.cardRepository.findAll());
     }
 

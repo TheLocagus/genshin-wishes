@@ -1,15 +1,15 @@
 package com.genshin.genshinrolls.entity.Card;
 
-
 import com.genshin.genshinrolls.enums.Category;
 import com.genshin.genshinrolls.enums.Element;
 import com.genshin.genshinrolls.enums.Rarity;
 import com.genshin.genshinrolls.enums.Weapon;
+import com.genshin.genshinrolls.interfaces.Card;
 import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class CardEntity {
+public class CardEntity implements Card {
 
     @Id
     @GeneratedValue
