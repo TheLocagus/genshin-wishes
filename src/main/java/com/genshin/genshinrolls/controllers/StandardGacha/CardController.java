@@ -16,32 +16,32 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/api/")
     ArrayList<CardEntity> getAllCards(){
         return this.cardService.getAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("/api/")
     CardEntity save(@RequestBody CardEntity card){
         return this.cardService.save(card);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/{id}")
     CardEntity getOne(@PathVariable Long id){
         return this.cardService.getOne(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/{id}")
     CardEntity update(@RequestBody CardEntity card, @PathVariable Long id){
         return this.cardService.update(card, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/{id}")
     CardEntity delete(@PathVariable Long id){
         return this.cardService.delete(id);
     }
 
-    @GetMapping("/ten-roll")
+    @GetMapping("/api/ten-roll")
     ArrayList<CardEntity> getTenCards(){
         return this.cardService.getTen();
     }

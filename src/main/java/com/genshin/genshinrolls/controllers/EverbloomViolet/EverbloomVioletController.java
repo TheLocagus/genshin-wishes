@@ -17,32 +17,32 @@ public class EverbloomVioletController {
         this.everbloomVioletService = everbloomVioletService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/api/")
     ArrayList<EverbloomVioletEntity> getAllCards(){
         return this.everbloomVioletService.getAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("/api/")
     EverbloomVioletEntity save(@RequestBody EverbloomVioletEntity card){
         return this.everbloomVioletService.save(card);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/{id}")
     EverbloomVioletEntity getOne(@PathVariable Long id){
         return this.everbloomVioletService.getOne(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/{id}")
     EverbloomVioletEntity update(@RequestBody EverbloomVioletEntity card, @PathVariable Long id){
         return this.everbloomVioletService.update(card, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/{id}")
     EverbloomVioletEntity delete(@PathVariable Long id){
         return this.everbloomVioletService.delete(id);
     }
 
-    @GetMapping("/ten-roll")
+    @GetMapping("/api/ten-roll")
     ArrayList<EverbloomVioletEntity> getTenCards(){
         return this.everbloomVioletService.getTen();
     }
